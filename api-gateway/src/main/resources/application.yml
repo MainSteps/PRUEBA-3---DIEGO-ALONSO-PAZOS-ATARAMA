@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: ms-clientes-clientes
+              uri: lb://ms-clientes
+              predicates:
+                - Path=/api/v1/clientes,/api/v1/clientes/**
+            - id: ms-clientes-direcciones
+              uri: lb://ms-clientes
+              predicates:
+                - Path=/api/v1/direcciones,/api/v1/direcciones/**
+            - id: ms-vehiculos-vehiculos
+              uri: lb://ms-vehiculos
+              predicates:
+                - Path=/api/v1/vehiculos,/api/v1/vehiculos/**
+            - id: ms-vehiculos-categorias
+              uri: lb://ms-vehiculos
+              predicates:
+                - Path=/api/v1/categorias,/api/v1/categorias/**
+            - id: ms-reservas-reservas
+              uri: lb://ms-reservas
+              predicates:
+                - Path=/api/v1/reservas,/api/v1/reservas/**
+            - id: ms-reservas-estados
+              uri: lb://ms-reservas
+              predicates:
+                - Path=/api/v1/estados-reserva,/api/v1/estados-reserva/**
+            - id: ms-pagos-pagos
+              uri: lb://ms-pagos
+              predicates:
+                - Path=/api/v1/pagos,/api/v1/pagos/**
+            - id: ms-sucursales-sucursales
+              uri: lb://ms-sucursales
+              predicates:
+                - Path=/api/v1/sucursales,/api/v1/sucursales/**
+            - id: ms-sucursales-regiones
+              uri: lb://ms-sucursales
+              predicates:
+                - Path=/api/v1/regiones,/api/v1/regiones/**
+            - id: ms-empleados-empleados
+              uri: lb://ms-empleados
+              predicates:
+                - Path=/api/v1/empleados,/api/v1/empleados/**
+            - id: ms-reportes-reportes
+              uri: lb://ms-reportes
+              predicates:
+                - Path=/api/v1/reportes,/api/v1/reportes/**
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
